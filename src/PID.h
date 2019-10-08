@@ -1,6 +1,8 @@
 #ifndef PID_H
 #define PID_H
 
+#import <cmath>
+
 class PID {
  public:
   /**
@@ -31,6 +33,7 @@ class PID {
    */
   double TotalError();
 
+  bool initialized = false;
  private:
   /**
    * PID Errors
