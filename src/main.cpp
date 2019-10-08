@@ -37,31 +37,8 @@ int main() {
   PID pid_steering;
   PID pid_throttle;
 
-  std::vector<double> p = {0.241869, 0.0095818, 19.7313};
-//  std::vector<double> p = {0.230077, 0.0090507, 19.7607};
-//  std::vector<double> p = {0.230047, 0.0090607, 19.7557};
-//  std::vector<double> p = {0.218047, 0.0057802, 18.1557};
-//  std::vector<double> p = {0.17, 0.0057802, 12.1557};
-  /*
-   * p = {0.17, 0.0057802, 12.1557};
-   *
-   *
-trying {0.07, 0.0057802, 12.1557}
-error 0.2875
-
-  best p {0.213047, 0.0057802, 12.1557}
-   best error 0.290465
-
-   trying {0.213047, 0.0057802, 18.1557}
-error 0.624982
-
-  trying {0.213047, 0.0090607, 12.1557}
-  error 1.47595
-
-   trying {0.213047, 0.00705113, 12.1557}
-   error 0.687139
-
-   */
+  std::vector<double> p = {0.241871, 0.0095814, 19.7321};
+//  std::vector<double> p = {0.241869, 0.0095816, 19.7320};
 
   int max_iterations = 1800;
   int iterations_to_ignore = 300;
@@ -88,7 +65,7 @@ error 0.624982
   int branch_num = 0;
   bool increment_factor = true;
   bool abort_early = false;
-  float max_throttle_val = 0.69;
+  float max_throttle_val = 0.75;
   float throttle_val = max_throttle_val / 2;
   float prev_err = 0;
 
@@ -225,7 +202,10 @@ error 0.624982
 
           // very feeble attempt to reduce throttle if the car is drifting too wide
           if (abs(cte_steer) > prev_err && prev_err > 0) {
-            throttle_val -= 0.005;
+            throttle_val -= 0.009;
+            if (throttle_val < max_throttle_val / 2) {
+              throttle_val = max_throttle_val / 2;
+            }
           } else {
             throttle_val += 0.01;
             if (throttle_val > max_throttle_val) {
