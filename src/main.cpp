@@ -115,7 +115,7 @@ int main() {
           std::cout << "angle " << angle << std::endl;
 
           // this twiddle looks like its full of demons but it actually seems to work ok
-          // it is extra possessed because the entire logic here happens within a message loop
+          // it appears extra possessed because the entire logic here happens within a message loop
           // and within this loop we need to count out some # of iterations, perform some logic,
           // then hit a couple branches depending on the results of the logic, all while
           // the message loop continues ticking
@@ -163,7 +163,8 @@ int main() {
               std::cout << "error " << total_err << std::endl;
 
               // twiddle algorithm:
-              // - for each multiplier (Tp, Ti, and Td), adjust it up by 1 unit or down by 1 unit
+              // - for each multiplier (Tp, Ti, and Td), adjust it up by 1x unit or down by 1x unit
+              //   (where each unit can be an arbitrary value)
               // -- if this change improved error, then increase the unit for this factor by 10%
               // -- if it did NOT improve error, then decrease the unit for this factor by 10%
               // - repeat until the sum of the units is below some threshold (or some other arbitrary goal post)
